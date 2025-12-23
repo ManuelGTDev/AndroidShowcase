@@ -21,4 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "AndroidShowcase"
 include(":app")
- 
+include(":data")
+include(":domain")
