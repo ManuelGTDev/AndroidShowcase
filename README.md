@@ -1,6 +1,6 @@
 # Android Showcase
 
-Android Showcase es una aplicación de ejemplo creada con el objetivo de mostrar, de forma sencilla y directa, la estructura que suelo utilizar den mis aplicaciones Android.
+Android Showcase es una aplicación de ejemplo creada con el objetivo de mostrar, de forma sencilla y directa, la estructura que suelo utilizar en mis aplicaciones Android.
 
 El proyecto está enfocado exclusivamente en demostrar conceptos de arquitectura, organización del código y navegación. No pretende ser una aplicación completa ni un producto preparado para producción.
 
