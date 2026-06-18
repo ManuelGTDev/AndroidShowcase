@@ -1,26 +1,13 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.jetbrainsKotlinSerialization)
-    id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
+    id("com.google.devtools.ksp")
 }
 
 android {
     namespace = "com.mgtdev.androidshowcase"
-
-    defaultConfig {
-        applicationId = "com.mgtdev.androidshowcase"
-        minSdk = 31
-        targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
 
     buildTypes {
         debug {
@@ -33,19 +20,12 @@ android {
             )
         }
         release {
-            //applicationIdSuffix = ".release"
-            //signingConfig = signingConfigs.getByName("release")
             isShrinkResources = true
             isMinifyEnabled = true
             isDebuggable = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
-        }
-    }
-    kotlin {
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_21)
         }
     }
 
@@ -57,14 +37,13 @@ android {
 
 dependencies {
     //Modules
-    implementation(project(":data"))
+    implementation(project(":di"))
     implementation(project(":domain"))
 
     //Navigation 3
     implementation(libs.androidx.navigation3.ui)
     implementation(libs.androidx.navigation3.runtime)
     implementation(libs.androidx.lifecycle.viewmodel.navigation3)
-    implementation(libs.androidx.material3.adaptive.navigation3)
 
     //Material 3
     implementation(libs.material3)
@@ -90,31 +69,19 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.lifecycle.process)
-    kapt(libs.androidx.room.compiler)
+    ksp(libs.androidx.room.compiler)
 
     // Images with Coil
-    //Cloudinary
-    //implementation(libs.cloudinary.android)
     implementation(libs.coil.compose)
 
     // Dagger - Hilt
     implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
+    ksp(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
-    //kapt(libs.androidx.hilt.compiler)
 
     // Hilt Testing
     androidTestImplementation(libs.hilt.android.testing)
-    kaptAndroidTest(libs.hilt.android.compiler)
-
-    // Retrofit + OkHttp
-    implementation(libs.retrofit)
-    implementation(libs.converter.gson)
-    implementation(libs.okhttp)
-    implementation(libs.logging.interceptor)
-
-    // Gson Annotations
-    implementation(libs.gson)
+    kspAndroidTest(libs.hilt.android.compiler)
 
     // Navigation
     implementation(libs.androidx.navigation.compose)

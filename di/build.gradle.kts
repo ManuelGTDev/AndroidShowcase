@@ -5,17 +5,15 @@ plugins {
 }
 
 android {
-    namespace = "com.mgtdev.domain"
+    namespace = "com.mgtdev.di"
 }
 
 dependencies {
-    testImplementation(libs.junit)
+    //Modules
+    implementation(project(":domain"))
+    implementation(project(":data"))
 
-    //Serialization
-    implementation(libs.kotlinx.serialization.json)
-
-    //Hilt
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
-    implementation(libs.androidx.hilt.navigation.compose)
+    testImplementation(libs.junit)
 }

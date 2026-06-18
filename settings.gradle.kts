@@ -11,6 +11,9 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
+}
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -21,5 +24,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "AndroidShowcase"
 include(":app")
-include(":data")
 include(":domain")
+include(":data")
+include(":di")
+include(":di")
